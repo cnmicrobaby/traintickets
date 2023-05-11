@@ -15,8 +15,10 @@ stations = dict(station)
 names = list(stations.keys())
 codes = list(stations.values())
 
+
 def getName(code):
     return names[codes.index(code)]
+
 
 def getCode(name):
     return codes[names.index(name)]
