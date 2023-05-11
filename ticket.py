@@ -68,8 +68,17 @@ def getTrainTickets(from_station, to_station, date):
         'purpose_codes': 'ADULT'
     }
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36 Edg/113.0.1774.35',
-        'Cookie': '_uab_collina=168372748270487053294913; JSESSIONID=8C3E7C6BA8D658F2F9A176A0C069AA9A; BIGipServerotn=1691943178.24610.0000; BIGipServerpassport=803733770.50215.0000; guidesStatus=off; highContrastMode=defaltMode; cursorStatus=off; route=6f50b51faa11b987e576cdb301e545c4; _jc_save_fromStation=%u4E0A%u6D77%2CSHH; _jc_save_toStation=%u5317%u4EAC%2CBJP; _jc_save_wfdc_flag=dc; BIGipServerportal=3084124426.17695.0000; _jc_save_toDate=2023-05-11; fo=oxuqwudojug3q4xveP9Q7gxnyU3GQXYDFYqAeR8y0B9gFr3N48K_Hyi8yI-QPzn6UEVzpC9hAQa_ZRBJ5ysKKLEGgyHr_brj39e7jBQsFBrwMmoZS-Tos0nCVK7L68v0u03AMhsWR3eQgA8dlMOZxE8ny60mrX8qTmW0Xi4dFROAchofqEVsrpBC7MY; _jc_save_fromDate=2023-05-11'
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
+                      'Chrome/113.0.0.0 Safari/537.36 Edg/113.0.1774.35',
+        'Cookie': '_uab_collina=168372748270487053294913; JSESSIONID=8C3E7C6BA8D658F2F9A176A0C069AA9A; '
+                  'BIGipServerotn=1691943178.24610.0000; BIGipServerpassport=803733770.50215.0000; guidesStatus=off; '
+                  'highContrastMode=defaltMode; cursorStatus=off; route=6f50b51faa11b987e576cdb301e545c4; '
+                  '_jc_save_fromStation=%u4E0A%u6D77%2CSHH; _jc_save_toStation=%u5317%u4EAC%2CBJP; '
+                  '_jc_save_wfdc_flag=dc; BIGipServerportal=3084124426.17695.0000; _jc_save_toDate=2023-05-11; '
+                  'fo=oxuqwudojug3q4xveP9Q7gxnyU3GQXYDFYqAeR8y0B9gFr3N48K_Hyi8yI'
+                  '-QPzn6UEVzpC9hAQa_ZRBJ5ysKKLEGgyHr_brj39e7jBQsFBrwMmoZS'
+                  '-Tos0nCVK7L68v0u03AMhsWR3eQgA8dlMOZxE8ny60mrX8qTmW0Xi4dFROAchofqEVsrpBC7MY; '
+                  '_jc_save_fromDate=2023-05-11'
     }
     response = requests.get(url, headers=headers, params=params, verify=False)
     train_tickets = response.json()['data']['result']
