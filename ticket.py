@@ -4,12 +4,15 @@
 # @File: ticket.py
 
 import requests
+from colorama import Fore
 from prettytable import PrettyTable
-import stations
+
+import station as st
+
+sts = st.getStations()
 
 
 class TrainsCollection:
-
     def __init__(self, train_tickets):
         self.train_tickets = train_tickets
 
@@ -17,12 +20,12 @@ class TrainsCollection:
     def plains(self):
         for item in self.train_tickets:
             cm = item.split('|')
-            train_no = cm[3]
-            from_station = stations.getName(cm[6])
-            to_station = stations.getName(cm[7])
-            start_time = cm[8]
-            arrive_time = cm[9]
-            time_duration = cm[10]
+            train_no = Fore.MAGENTA + cm[3] + Fore.RESET
+            from_station = Fore.BLUE + st.getName(sts, cm[6]) + Fore.RESET
+            to_station = Fore.YELLOW + st.getName(sts, cm[7]) + Fore.RESET
+            start_time = Fore.BLUE + cm[8] + Fore.RESET
+            arrive_time = Fore.YELLOW + cm[9] + Fore.RESET
+            time_duration = Fore.MAGENTA + cm[10] + Fore.RESET
             business_seat = cm[32] or '--'
             first_class_seat = cm[31] or '--'
             second_class_seat = cm[30] or '--'
@@ -45,11 +48,20 @@ class TrainsCollection:
                 hard_seat,
                 no_seat
             ]
+            for i in range(len(train_data) - 4):
+                if train_data[i + 4] == '无':
+                    train_data[i + 4] = Fore.RED + train_data[i + 4] + Fore.RESET
+                elif train_data[i + 4] == '--':
+                    train_data[i + 4] = Fore.WHITE + train_data[i + 4] + Fore.RESET
+                else:
+                    train_data[i + 4] = Fore.GREEN + train_data[i + 4] + Fore.RESET
             yield train_data
 
     def pretty_print(self):
         pt = PrettyTable()
-        header = '车次 车站 时间 历时 商务座 一等座 二等座 软卧 硬卧 硬座 无座'.split()
+        title = Fore.CYAN + '12306火车票查询系统' + Fore.RESET
+        header = (Fore.CYAN + '车次 车站 时间 历时 商务座 一等座 二等座 软卧 硬卧 硬座 无座' + Fore.RESET).split()
+        pt.title = title
         pt.field_names = header
         for train_data in self.plains:
             pt.add_row(train_data)
@@ -58,8 +70,8 @@ class TrainsCollection:
 
 
 def getTrainTickets(from_station, to_station, date):
-    from_station = stations.getCode(from_station)
-    to_station = stations.getCode(to_station)
+    from_station = st.getCode(sts, from_station)
+    to_station = st.getCode(sts, to_station)
     url = 'https://kyfw.12306.cn/otn/leftTicket/query'
     params = {
         'leftTicketDTO.train_date': date,
