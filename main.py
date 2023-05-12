@@ -27,7 +27,7 @@ if __name__ == '__main__':
             date = time.strptime(tripDate, '%Y-%m-%d')
             now_str = datetime.now().strftime('%Y-%m-%d')
             now_date = time.strptime(now_str, '%Y-%m-%d')
-            if date.tm_yday < now_date.tm_yday or date.tm_yday > now_date.tm_yday + 15:
+            if date.tm_yday < now_date.tm_yday or date.tm_yday > now_date.tm_yday + 14:
                 logger.info('输入的日期期限有误！')
                 tripDate = input('（格式:2000-01-01，请输入大于等于今天的日期，且不超过15天）\n请输入出发日期：')
             else:
