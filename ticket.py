@@ -69,6 +69,7 @@ class TrainsCollection:
         print(pt.get_string(sortby='时间'))
 
 
+# 查询火车票信息
 def getTrainTickets(from_station, to_station, date):
     from_station = st.getCode(sts, from_station)
     to_station = st.getCode(sts, to_station)
