@@ -9,7 +9,7 @@ from prettytable import PrettyTable
 
 import station as st
 
-sts = st.getStations()
+sts = st.get_stations()
 
 
 class TrainsCollection:
@@ -21,8 +21,8 @@ class TrainsCollection:
         for item in self.train_tickets:
             cm = item.split('|')
             train_no = Fore.MAGENTA + cm[3] + Fore.RESET
-            from_station = Fore.BLUE + st.getName(sts, cm[6]) + Fore.RESET
-            to_station = Fore.YELLOW + st.getName(sts, cm[7]) + Fore.RESET
+            from_station = Fore.BLUE + st.get_name(sts, cm[6]) + Fore.RESET
+            to_station = Fore.YELLOW + st.get_name(sts, cm[7]) + Fore.RESET
             start_time = Fore.BLUE + cm[8] + Fore.RESET
             arrive_time = Fore.YELLOW + cm[9] + Fore.RESET
             time_duration = Fore.MAGENTA + cm[10] + Fore.RESET
@@ -71,8 +71,8 @@ class TrainsCollection:
 
 # 查询火车票信息
 def get_train_tickets(from_station, to_station, date):
-    from_station = st.getCode(sts, from_station)
-    to_station = st.getCode(sts, to_station)
+    from_station = st.get_code(sts, from_station)
+    to_station = st.get_code(sts, to_station)
     url = 'https://kyfw.12306.cn/otn/leftTicket/query'
     params = {
         'leftTicketDTO.train_date': date,
