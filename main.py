@@ -11,7 +11,7 @@ import ticket as tk
 from log import logger
 
 # 载入各城市车站信息
-sts = st.getStations()
+sts = st.get_stations()
 
 if __name__ == '__main__':
     # 判断输入的出发城市信息
