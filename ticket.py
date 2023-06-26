@@ -70,7 +70,7 @@ class TrainsCollection:
 
 
 # 查询火车票信息
-def getTrainTickets(from_station, to_station, date):
+def get_train_tickets(from_station, to_station, date):
     from_station = st.getCode(sts, from_station)
     to_station = st.getCode(sts, to_station)
     url = 'https://kyfw.12306.cn/otn/leftTicket/query'
